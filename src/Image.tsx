@@ -25,6 +25,8 @@ export const Image = <T extends ImageExtended>({
     "data-testid": "grid-gallery-item_thumbnail",
     src: item.src,
     alt: item.alt ? item.alt : "",
+    crossOrigin:
+      typeof item.crossOrigin === "string" ? item.crossOrigin : undefined,
     title: typeof item.caption === "string" ? item.caption : null,
     style: getStyle(thumbnailStyle, styles.thumbnail, styleContext),
   };

@@ -15,6 +15,7 @@ export interface Image {
   height: number;
   nano?: string;
   alt?: string;
+  crossOrigin?: "anonymous" | "use-credentials" | "";
   tags?: ImageTag[];
   isSelected?: boolean;
   caption?: ReactNode;
