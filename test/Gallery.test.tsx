@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
 import { Gallery } from "../src/Gallery";
-import { ThumbnailImageProps } from "../src/types";
+import { Image, ThumbnailImageProps } from "../src/types";
 
 const image1 = {
   src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Apples.jpg/320px-Apples.jpg",
@@ -145,6 +145,15 @@ describe("Gallery Component", () => {
       render(<Gallery images={[image1]} />);
 
       expect(getItemThumbnail()).toHaveAttribute("src", image1.src);
+    });
+
+    it("should set thumbnail image crossorigin attribute based on crossOrigin prop", () => {
+      const crossOrigin = "anonymous" as const;
+      const image = { ...image1, crossOrigin };
+
+      render(<Gallery images={[image]} />);
+
+      expect(getItemThumbnail()).toHaveAttribute("crossorigin", crossOrigin);
     });
 
     it("should set thumbnail image alt attribute based on alt prop", () => {
